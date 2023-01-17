@@ -5,7 +5,7 @@ import numpy as np
 
 from action.default_act import DefaultAction
 from agent import Agent
-from obs.default_obs import DefaultObs
+from obs.advanced_obs import AdvancedObs
 from rlgym_compat import GameState
 
 
@@ -15,7 +15,7 @@ class RLGymExampleBot(BaseAgent):
 
         # FIXME Hey, botmaker. Start here:
         # Swap the obs builder if you are using a different one, RLGym's AdvancedObs is also available
-        self.obs_builder = DefaultObs()
+        self.obs_builder = AdvancedObs()
         # Swap the action parser if you are using a different one, RLGym's Discrete and Continuous are also available
         self.act_parser = DefaultAction()
         # Your neural network logic goes inside the Agent class, go take a look inside src/agent.py
@@ -29,7 +29,9 @@ class RLGymExampleBot(BaseAgent):
         self.update_action = True
         self.ticks = 0
         self.prev_time = 0
-        print('RLGymExampleBot Ready - Index:', index)
+        self.expected_teamates = 0
+        self.expected_opponents = 1
+        print(f'{self.name} Ready - Index:', index)
 
     def initialize_agent(self):
         # Initialize the rlgym GameState object now that the game is active and the info is available
